@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=8" />
   <link rel="stylesheet" href="stockx.css?v=8" />
 </head>
 <body class="is-loading">
@@ -246,16 +246,26 @@
           </footer>
         </article>
 
-        <article class="project" data-tilt>
+        <article class="project project--planned" data-tilt>
           <div class="project__glow"></div>
           <header>
             <span class="project__idx">P-06</span>
-            <span class="project__tag">mobile · realtime</span>
+            <span class="project__status"><i></i>planned · up next</span>
           </header>
-          <h3>Sticker Messenger</h3>
-          <p>An Android app for sending stickers between users in real time via Firebase Realtime Database, with notification channels, history and per-sticker send counts that survive rotation.</p>
+          <h3>Real-Time Analytics Dashboard</h3>
+          <p>A live market-analytics dashboard that streams price ticks, computes indicators on the fly and surfaces portfolio risk the moment it changes. The data layer from StockXchange, grown into a proper analyst tool.</p>
+          <div class="roadmap">
+            <div class="roadmap__bar"><span style="--p: 10%"></span><small>roadmap · 1 / 5 · design in progress</small></div>
+            <ol>
+              <li class="is-doing">Architecture: WebSocket ingest, time-series storage, alerting</li>
+              <li>Streaming pipeline with rolling windows (VWAP, volatility, moving averages)</li>
+              <li>Dashboard UI: live charts, watchlists, P&amp;L and drawdown panels</li>
+              <li>Threshold alerts and anomaly flags pushed in real time</li>
+              <li>Load testing, then deploy with a public demo</li>
+            </ol>
+          </div>
           <footer>
-            <div class="chips"><i>Android</i><i>Java</i><i>Firebase</i><i>Notifications</i></div>
+            <div class="chips"><i>TypeScript</i><i>WebSockets</i><i>Python</i><i>Time-series DB</i><i>Charts</i></div>
           </footer>
         </article>
 
@@ -354,7 +364,7 @@
   <canvas id="matrix" aria-hidden="true"></canvas>
   <div class="toast" id="toast"></div>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
   <script src="stockx.js?v=9"></script>
 </body>
 </html>
