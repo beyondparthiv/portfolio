@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parthiv Modi | Software Engineer</title>
+  <meta name="description" content="Parthiv Modi, full-stack software engineer and CS grad student at Northeastern. Real-time systems, AI-powered apps, and products that ship." />
+  <meta name="theme-color" content="#07080a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="stockx.css?v=8" />
+</head>
+<body class="is-loading">
+
+  <!-- ============ BOOT SEQUENCE ============ -->
+  <div id="boot" aria-hidden="true">
+    <div class="boot__log" id="bootLog"></div>
+    <div class="boot__bar"><span id="bootBar"></span></div>
+    <div class="boot__pct" id="bootPct">000</div>
+    <button class="boot__skip" id="bootSkip">skip ⏎</button>
+  </div>
+  <div class="curtain curtain--top"></div>
+  <div class="curtain curtain--bottom"></div>
+
+  <!-- ============ CHROME ============ -->
+  <div class="grain"></div>
+  <div class="cursor" id="cursor">
+    <div class="cursor__box" id="cursorBox"><i></i><i></i><i></i><i></i><span class="cursor__label" id="cursorLabel"></span></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+  <div class="progress" id="progress"></div>
+
+  <header class="nav">
+    <a href="#top" class="nav__logo" data-magnetic>PM<span>_</span></a>
+    <nav class="nav__links">
+      <a href="#work" data-scramble>work</a>
+      <a href="#experience" data-scramble>experience</a>
+      <a href="#stack" data-scramble>stack</a>
+      <a href="#contact" data-scramble>contact</a>
+    </nav>
+    <button class="nav__cmd" id="cmdOpen" data-magnetic aria-label="Open command palette"><kbd>Ctrl</kbd><kbd>K</kbd></button>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <canvas id="particles" aria-hidden="true"></canvas>
+      <div class="hero__meta hero__meta--tl reveal-up">
+        <span class="dot"></span> <span id="status">open to software engineering roles</span>
+      </div>
+      <div class="hero__meta hero__meta--tr reveal-up">
+        <span id="clock">--:--:--</span> · Boston, MA
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__kicker reveal-up"><span class="mono">~/parthiv $</span> whoami</p>
+        <h1 class="hero__title" aria-label="Parthiv Modi">
+          <span class="line"><span class="word">Parthiv</span></span>
+          <span class="line"><span class="word word--outline">Modi</span><span class="word word--serif">.</span></span>
+        </h1>
+        <p class="hero__role reveal-up">
+          <span class="serif">I build</span>
+          <span class="role" id="role">real-time systems</span><span class="caret">▍</span>
+        </p>
+        <div class="hero__cta reveal-up">
+          <a href="#work" class="btn btn--solid" data-magnetic data-cursor="cd ./work">See the work ↓</a>
+          <a href="https://github.com/beyondparthiv" target="_blank" rel="noopener" class="btn" data-magnetic data-cursor="open github">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="hero__scroll reveal-up"><span>scroll</span><i></i></div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee">
+        <span>TypeScript</span><b>✦</b><span>Next.js</span><b>✦</b><span>Python</span><b>✦</b><span>FastAPI</span><b>✦</b><span>Java</span><b>✦</b><span>Supabase</span><b>✦</b><span>Postgres</span><b>✦</b><span>MongoDB</span><b>✦</b><span>Android</span><b>✦</b><span>LLM APIs</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about section" id="about">
+      <div class="section__label"><span>01</span> / about</div>
+      <p class="about__lead split-words">
+        Graduate CS student at <em>Northeastern</em>, building where software meets <em>markets</em>.
+        Real-time trading systems and AI-powered tools, shipped like production: typed end to end,
+        tested at the edges, and documented so the next engineer can move fast.
+      </p>
+      <div class="stats">
+        <div class="stat"><b data-count="7">0</b><span>graduate CS courses</span></div>
+        <div class="stat"><b data-count="10">0</b><span>shipped project phases on Daybook</span></div>
+        <div class="stat"><b data-count="2">0</b><span>services in one repo (TS + Py)</span></div>
+        <div class="stat"><b data-count="1">0</b><span>build un-broken on day one @ IpserLabs</span></div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="work section" id="work">
+      <div class="section__label"><span>02</span> / selected work</div>
+      <h2 class="section__title">Things I've <em>shipped</em><br/>&amp; broken &amp; fixed.</h2>
+
+      <div class="projects">
+
+        <article class="project project--feature sx-card">
+          <header>
+            <span class="project__idx">P-01</span>
+            <span class="project__tag">multiplayer · fintech sim</span>
+          </header>
+          <h3>StockXchange</h3>
+          <div class="sx-layout">
+            <div class="sx-info">
+              <p>A real-time multiplayer stock-trading game inspired by the classic Indian board game. Players buy, sell, short and pass across trading rounds while procedurally generated news (some true, some false) moves the market.</p>
+              <p class="sx-try"><b>Try it →</b> trade the demo terminal. Keys <kbd>B</kbd> <kbd>S</kbd> <kbd>X</kbd> <kbd>P</kbd>, or click a ticker to switch charts.</p>
+              <ul class="project__bullets">
+                <li>Isolated the quant logic in a <b>Python FastAPI</b> microservice (NumPy/Pandas) for price settlement, P&amp;L and event-card effects.</li>
+                <li>Next.js talks to the engine server-to-server, so the engine URL stays private and there's no CORS in the app path.</li>
+                <li>Lobbies and rooms sync live over <b>Supabase Realtime</b>; game state in Zustand.</li>
+              </ul>
+              <footer>
+                <div class="chips"><i>Next.js 16</i><i>TypeScript</i><i>FastAPI</i><i>NumPy</i><i>Supabase</i><i>Zustand</i></div>
+                <a href="https://github.com/beyondparthiv/StockXchange" target="_blank" rel="noopener" class="project__link" data-cursor="git clone">source ↗</a>
+              </footer>
+            </div>
+
+            <div class="sx" id="sx" role="region" aria-label="Playable StockXchange demo with simulated prices">
+              <div class="sx__top">
+                <span class="sx__brand">SX<i>/</i>TERMINAL</span>
+                <span class="sx__phase">DAY <b id="sxDay">1</b>/3 · ROUND <b id="sxRound">1</b>/2</span>
+                <span class="sx__clock" id="sxClock">00:18</span>
+                <span class="sx__live"><i></i>LIVE</span>
+                <span class="sx__timer"><i id="sxTimer"></i></span>
+              </div>
+
+              <div class="sx__news">
+                <span class="sx__flag">BREAKING</span>
+                <span class="sx__headline" id="sxNews">Markets open…</span>
+                <span class="sx__stamp" id="sxStamp"></span>
+              </div>
+
+              <div class="sx__main">
+                <div class="sx__chart">
+                  <div class="sx__quote">
+                    <b id="sxSym">AAPL</b><span id="sxName">Apple</span>
+                    <strong id="sxPrice">$0.00</strong><em id="sxChg">+0.00%</em>
+                    <small id="sxOhlc"></small>
+                  </div>
+                  <canvas id="sxCanvas"></canvas>
+                </div>
+                <div class="sx__watch" id="sxWatch"></div>
+              </div>
+
+              <div class="sx__bottom">
+                <div class="sx__wallet">
+                  <div><span>cash</span><b id="sxCash">$10,000</b></div>
+                  <div><span>position</span><b id="sxPos">0 sh</b></div>
+                  <div><span>net worth</span><b id="sxNet">$10,000</b></div>
+                  <div><span>P&amp;L</span><b id="sxPnl">+0.00%</b></div>
+                </div>
+                <div class="sx__actions">
+                  <button class="sx__btn sx__btn--buy" data-act="buy">BUY<kbd>B</kbd></button>
+                  <button class="sx__btn sx__btn--sell" data-act="sell">SELL<kbd>S</kbd></button>
+                  <button class="sx__btn sx__btn--short" data-act="short">SHORT<kbd>X</kbd></button>
+                  <button class="sx__btn sx__btn--pass" data-act="pass">PASS<kbd>P</kbd></button>
+                </div>
+                <div class="sx__board">
+                  <span class="sx__label">leaderboard</span>
+                  <ol id="sxBoard"></ol>
+                </div>
+              </div>
+
+              <div class="sx__fx" id="sxFx" aria-hidden="true"></div>
+              <div class="sx__splash" id="sxSplash" aria-live="polite"><b></b><span></span></div>
+              <div class="sx__scan" aria-hidden="true"></div>
+              <p class="sx__note">simulated game · made-up prices &amp; headlines · not real news or market data</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-tilt>
+          <div class="project__glow"></div>
+          <header>
+            <span class="project__idx">P-02</span>
+            <span class="project__tag">AI · computer vision</span>
+          </header>
+          <h3>Daybook</h3>
+          <p>Snap a photo of any schedule, like a shift roster, an appointment card or a timetable, and <b>AI vision</b> turns it into calendar events, with overlap detection that flags clashes the moment they happen.</p>
+          <div class="snippet" aria-hidden="true"><code><span class="c">// photo → events</span>
+<span class="k">const</span> events = <span class="k">await</span> extract(img)
+<span class="k">if</span> (collides(events)) <span class="f">warn</span>(<span class="s">"2 conflicts"</span>)</code></div>
+          <ul class="project__bullets">
+            <li>Pivoted from Supabase to <b>local-first</b> when the free tier ran out, with a hydration-safe store and JSON export/import backup.</li>
+            <li>Built across 10 documented phases with a dev log of every decision and gotcha.</li>
+          </ul>
+          <footer>
+            <div class="chips"><i>Next.js 15</i><i>Tailwind v4</i><i>LLM vision API</i></div>
+            <a href="https://github.com/beyondparthiv/DayBook" target="_blank" rel="noopener" class="project__link" data-cursor="git clone">source ↗</a>
+          </footer>
+        </article>
+
+        <article class="project" data-tilt>
+          <div class="project__glow"></div>
+          <header>
+            <span class="project__idx">P-03</span>
+            <span class="project__tag">product · PWA</span>
+          </header>
+          <h3>HabitFlow</h3>
+          <p>A daily habit tracker with a monthly check-in grid, streaks, history charts and five switchable themes. Installable as a PWA, secured with Postgres row-level security.</p>
+          <div class="habit-grid" id="habitGrid" aria-hidden="true"></div>
+          <ul class="project__bullets">
+            <li>Tracked down a Google OAuth bug where session cookies were dropped on a manual <code>NextResponse.redirect()</code>.</li>
+            <li>Fixed a timezone edge case that "locked" habits created near midnight in zones behind UTC.</li>
+          </ul>
+          <footer>
+            <div class="chips"><i>Next.js 16</i><i>Supabase RLS</i><i>OAuth</i><i>Recharts</i><i>shadcn/ui</i></div>
+            <a href="https://github.com/beyondparthiv/HabitFlow" target="_blank" rel="noopener" class="project__link" data-cursor="git clone">source ↗</a>
+          </footer>
+        </article>
+
+        <article class="project" data-tilt>
+          <div class="project__glow"></div>
+          <header>
+            <span class="project__idx">P-04</span>
+            <span class="project__tag">full-stack · team</span>
+          </header>
+          <h3>BookMyCourt</h3>
+          <p>A booking platform for pickleball courts, built as a team final project for CS 5610 Web Development. Browse courts, reserve slots and manage bookings.</p>
+          <footer>
+            <div class="chips"><i>Next.js</i><i>Express 5</i><i>MongoDB</i><i>Mongoose</i></div>
+            <a href="https://github.com/beyondparthiv/webdev-finalproject-bookmycourt" target="_blank" rel="noopener" class="project__link" data-cursor="git clone">source ↗</a>
+          </footer>
+        </article>
+
+        <article class="project" data-tilt>
+          <div class="project__glow"></div>
+          <header>
+            <span class="project__idx">P-05</span>
+            <span class="project__tag">OOD · Java</span>
+          </header>
+          <h3>Calendar App</h3>
+          <p>An interactive + headless (CSV-driven) calendar engine for CS 5010. Extended v1 without breaking it using the <b>Adapter</b>, <b>Factory</b> and <b>Command</b> patterns, with timezone-aware calendars and recurring events.</p>
+          <footer>
+            <div class="chips"><i>Java</i><i>MVC</i><i>Design Patterns</i><i>JUnit</i></div>
+          </footer>
+        </article>
+
+        <article class="project" data-tilt>
+          <div class="project__glow"></div>
+          <header>
+            <span class="project__idx">P-06</span>
+            <span class="project__tag">mobile · realtime</span>
+          </header>
+          <h3>Sticker Messenger</h3>
+          <p>An Android app for sending stickers between users in real time via Firebase Realtime Database, with notification channels, history and per-sticker send counts that survive rotation.</p>
+          <footer>
+            <div class="chips"><i>Android</i><i>Java</i><i>Firebase</i><i>Notifications</i></div>
+          </footer>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="experience section" id="experience">
+      <div class="section__label"><span>03</span> / experience</div>
+      <h2 class="section__title">Where I've <em>worked</em>.</h2>
+
+      <ol class="timeline">
+        <li class="tl">
+          <div class="tl__when">2026 – now</div>
+          <div class="tl__body">
+            <h3>Software Engineering Intern <span>@ IpserLabs</span></h3>
+            <p class="tl__sub">UncoverGems, a quiz-generation platform</p>
+            <ul>
+              <li>Unblocked a production build that failed on stale imports after an auth module rewrite. Traced each removed export, proved it unused, and got the build from <code>Failed to compile</code> to green.</li>
+              <li>Upgraded dependencies (axios 1.x, eslint 7.32, pinned react-scripts 5.0.1) on an isolated branch with one commit per change.</li>
+              <li>Built the first milestone of a dark-premium homepage redesign as a <b>lazy-loaded route</b>, so the team could review it side-by-side without touching the live site.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl">
+          <div class="tl__when">2025 – now</div>
+          <div class="tl__body">
+            <h3>M.S. Computer Science <span>@ Northeastern University</span></h3>
+            <p class="tl__sub">Khoury College of Computer Sciences · Boston</p>
+            <div class="chips chips--wrap">
+              <i>Algorithms</i><i>Database Management</i><i>Foundations of AI</i><i>Program Design Paradigm</i><i>Web Development</i><i>Mobile App Development</i><i>Human–Computer Interaction</i>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section class="stack section" id="stack">
+      <div class="section__label"><span>04</span> / toolbox</div>
+      <h2 class="section__title">The <em>stack</em>.</h2>
+      <div class="stack__grid">
+        <div class="stack__col">
+          <h4>// languages</h4>
+          <ul><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>Java</li><li>SQL</li><li>PHP</li></ul>
+        </div>
+        <div class="stack__col">
+          <h4>// frontend</h4>
+          <ul><li>React</li><li>Next.js (App Router)</li><li>Tailwind CSS</li><li>shadcn/ui</li><li>Zustand</li><li>Recharts</li></ul>
+        </div>
+        <div class="stack__col">
+          <h4>// backend &amp; data</h4>
+          <ul><li>Node / Express</li><li>FastAPI</li><li>PostgreSQL / Supabase</li><li>MongoDB</li><li>Firebase</li><li>NumPy / Pandas</li></ul>
+        </div>
+        <div class="stack__col">
+          <h4>// practice</h4>
+          <ul><li>LLM APIs</li><li>Android</li><li>OAuth &amp; RLS</li><li>Design patterns</li><li>Git workflows</li><li>Vercel</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact section" id="contact">
+      <div class="section__label"><span>05</span> / contact</div>
+      <a class="contact__big" href="mailto:modi.part@northeastern.edu" data-cursor="mail parthiv">
+        <span>Let's build</span>
+        <span><em>something</em> →</span>
+      </a>
+      <div class="contact__row">
+        <button class="btn btn--solid" id="copyEmail" data-magnetic>modi.part@northeastern.edu <small>copy</small></button>
+        <a class="btn" href="https://github.com/beyondparthiv" target="_blank" rel="noopener" data-magnetic>GitHub ↗</a>
+      </div>
+
+      <div class="term" id="term">
+        <div class="term__bar"><i></i><i></i><i></i><span>parthiv@portfolio — zsh</span></div>
+        <div class="term__out" id="termOut"><p>Type <b>help</b> to see what this terminal can do.</p></div>
+        <label class="term__in"><span>~ $</span><input id="termInput" autocomplete="off" spellcheck="false" aria-label="Terminal input" /></label>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Parthiv Modi</span>
+    <span class="mono">psst, try the konami code</span>
+    <a href="#top" data-scramble>back to top ↑</a>
+  </footer>
+
+  <!-- ============ COMMAND PALETTE ============ -->
+  <div class="cmdk" id="cmdk" hidden>
+    <div class="cmdk__panel" role="dialog" aria-label="Command palette">
+      <input id="cmdkInput" placeholder="Jump to… (try 'github' or 'matrix')" autocomplete="off" />
+      <ul id="cmdkList"></ul>
+    </div>
+  </div>
+
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js?v=7"></script>
+  <script src="stockx.js?v=9"></script>
+</body>
+</html>
