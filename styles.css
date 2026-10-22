@@ -14,7 +14,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
 body {
   background: var(--bg);
   color: var(--fg);
@@ -354,6 +355,12 @@ body.ready .hero__scroll.reveal-up { animation-delay: 1s; }
 .tl li { padding-left: 20px; position: relative; }
 .tl li::before { content: "▹"; position: absolute; left: 0; color: var(--acid); }
 .chips--wrap { margin-top: 8px; }
+.tl__when small { display: block; color: var(--muted); font-size: 11px; margin-top: 4px; }
+.tl__now { display: flex; align-items: baseline; gap: 10px; margin: -4px 0 20px; padding: 12px 14px; border: 1px solid #2a3320; border-radius: 10px; background: #0e120a; color: #c3c0b8; font-size: 13px; max-width: 80ch; }
+.tl__now i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--acid); transform: translateY(-1px); animation: pulse 2s infinite; }
+.tl__now span { color: var(--acid); white-space: nowrap; }
+.tl .chips--wrap { margin-top: 18px; }
+
 
 /* ---------- STACK ---------- */
 .stack__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }

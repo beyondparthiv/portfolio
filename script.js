@@ -447,7 +447,7 @@
   const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
   const T = {
     help: () => "commands: <b>whoami</b> <b>ls</b> <b>skills</b> <b>contact</b> <b>github</b> <b>matrix</b> <b>clear</b> <b>sudo hire-me</b>",
-    whoami: () => "parthiv modi: grad CS @ northeastern, full-stack engineer, intern @ ipserlabs.",
+    whoami: () => "parthiv modi: grad CS @ northeastern, full-stack engineer, intern @ ipserlab.",
     ls: () => "stockxchange/  daybook/  habitflow/  bookmycourt/  calendar-app/  analytics-dashboard/ (planned)",
     skills: () => "ts · js · python · java · sql · next.js · react · fastapi · express · postgres · mongodb · supabase · firebase · android · llm apis",
     contact: () => { copyEmail(); return `email: <b>${EMAIL}</b> (copied)`; },

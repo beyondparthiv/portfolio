@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=12" />
   <link rel="stylesheet" href="stockx.css?v=8" />
 </head>
 <body class="is-loading">
@@ -93,7 +93,7 @@
         <div class="stat"><b data-count="7">0</b><span>graduate CS courses</span></div>
         <div class="stat"><b data-count="10">0</b><span>shipped project phases on Daybook</span></div>
         <div class="stat"><b data-count="2">0</b><span>services in one repo (TS + Py)</span></div>
-        <div class="stat"><b data-count="1">0</b><span>build un-broken on day one @ IpserLabs</span></div>
+        <div class="stat"><b data-count="1">0</b><span>build un-broken on day one @ IpserLab</span></div>
       </div>
     </section>
 
@@ -296,15 +296,21 @@
 
       <ol class="timeline">
         <li class="tl">
-          <div class="tl__when">2026 – now</div>
+          <div class="tl__when">Sep 2026 – now<small>remote</small></div>
           <div class="tl__body">
-            <h3>Software Engineering Intern <span>@ IpserLabs</span></h3>
-            <p class="tl__sub">UncoverGems, a quiz-generation platform</p>
+            <h3>Software Engineer Intern <span>@ IpserLab</span></h3>
+            <p class="tl__sub">UncoverGems, a quiz-generation platform for creators and businesses</p>
+            <p class="tl__now"><i></i><span>Currently shipping</span> the UncoverGems homepage redesign, section by section, from the team lead's mockup and design spec.</p>
             <ul>
-              <li>Unblocked a production build that failed on stale imports after an auth module rewrite. Traced each removed export, proved it unused, and got the build from <code>Failed to compile</code> to green.</li>
-              <li>Upgraded dependencies (axios 1.x, eslint 7.32, pinned react-scripts 5.0.1) on an isolated branch with one commit per change.</li>
-              <li>Built the first milestone of a dark-premium homepage redesign as a <b>lazy-loaded route</b>, so the team could review it side-by-side without touching the live site.</li>
+              <li>Built the redesigned homepage in <b>React</b>: header, hero, creator and quiz-taker paths, "who we are", mission, final call to action and footer, all on a <b>lazy-loaded <code>/redesign</code> route</b> so the team reviews it side by side with zero impact on the live site.</li>
+              <li>Laid down a <b>design-system foundation</b>: every color, type size, spacing, radius and shadow from the spec as scoped tokens, plus reusable Button and Card components that the rest of the team can build on.</li>
+              <li>Turned the hero into a <b>playable quiz preview</b>: visitors answer a sample question and get a personalized result in two clicks, built to hit the spec's "drives engagement" goal.</li>
+              <li>Made it <b>accessible and responsive</b>: real radio inputs, visible focus states, screen-reader announcements and reduced-motion support, verified at 1280px and 375px with every color and font checked against the spec.</li>
+              <li>Unblocked a <b>broken production build</b> after an auth-module rewrite. Traced six stale imports, proved none were used, and took the build from <code>Failed to compile</code> to green.</li>
+              <li>Caught and removed <b>obfuscated code hidden in a build config file</b> that ran on every start and build, and documented it for the team.</li>
+              <li>Kept shared branches safe with a personal feature branch and one commit per change. Upgraded dependencies (axios 1.x, eslint 7.32, react-scripts 5.0.1) and flagged a mixed yarn/npm lockfile issue to the team.</li>
             </ul>
+            <div class="chips chips--wrap"><i>React</i><i>JavaScript</i><i>CSS design tokens</i><i>Accessibility</i><i>Yarn</i><i>Git</i></div>
           </div>
         </li>
         <li class="tl">
@@ -381,7 +387,7 @@
   <canvas id="matrix" aria-hidden="true"></canvas>
   <div class="toast" id="toast"></div>
 
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=11"></script>
   <script src="stockx.js?v=9"></script>
 </body>
 </html>
