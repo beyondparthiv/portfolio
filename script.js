@@ -345,6 +345,28 @@
     });
   }
 
+  /* ================= DAYBOOK DEMO: photo -> events -> clash caught ================= */
+  const db = $("#dbDemo"), dbStatus = $("#dbStatus"), dbEvents = $$(".db__ev", db);
+  const dbState = (cls, msg) => { db.className = "db " + cls; dbStatus.textContent = msg; };
+  function dbFinal() { dbEvents.forEach((e) => e.classList.add("is-in")); dbState("is-clash is-done", "6 events added · 1 clash caught (Thu: Shift × Dentist)"); }
+  let dbTimers = [], dbRunning = false;
+  function dbRun() {
+    dbTimers.forEach(clearTimeout); dbTimers = [];
+    const at = (ms, fn) => dbTimers.push(setTimeout(fn, ms));
+    dbEvents.forEach((e) => e.classList.remove("is-in"));
+    dbState("is-scanning", "scanning photo…");
+    at(1900, () => dbState("is-placing", "reading schedule → 6 events"));
+    dbEvents.forEach((e, i) => at(2100 + i * 260, () => e.classList.add("is-in")));
+    at(2100 + dbEvents.length * 260 + 300, () => dbState("is-clash", "⚠ clash: Thu Shift overlaps Dentist"));
+    at(2100 + dbEvents.length * 260 + 2000, dbFinal);
+    at(2100 + dbEvents.length * 260 + 5200, () => dbRunning && dbRun());
+  }
+  if (reduced) dbFinal();
+  else new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !dbRunning) { dbRunning = true; dbRun(); }
+    else if (!e.isIntersecting && dbRunning) { dbRunning = false; dbTimers.forEach(clearTimeout); dbFinal(); }
+  }, { threshold: 0.4 }).observe(db);
+
   /* ================= HABIT GRID ================= */
   const hg = $("#habitGrid");
   for (let i = 0; i < 56; i++) { const s = document.createElement("span"); hg.appendChild(s); }

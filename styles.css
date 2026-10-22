@@ -279,11 +279,45 @@ body.ready .hero__scroll.reveal-up { animation-delay: 1s; }
 .chips i { font-style: normal; font-size: 11px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
 .project__link { font-size: 13px; border-bottom: 1px solid var(--acid); }
 .project__link:hover { color: var(--acid); }
+.project__links { display: flex; gap: 16px; }
 
 
-.snippet { background: #0a0c0e; border: 1px solid var(--line); border-radius: 12px; padding: 16px; font-size: 13px; white-space: pre; overflow-x: auto; }
-.snippet code { color: var(--fg); }
-.snippet .c { color: #5b626b; } .snippet .k { color: var(--ember); } .snippet .s { color: var(--acid); } .snippet .f { color: #7fc8ff; }
+
+/* daybook mini demo: photo -> calendar, then a clash gets caught */
+.db { display: grid; grid-template-columns: 84px 20px minmax(0, 1fr); grid-template-rows: auto auto; gap: 10px 8px; align-items: center;
+  background: #0a0c0e; border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.db__photo { position: relative; height: 104px; border-radius: 6px; background: #ece8df; padding: 12px 10px 18px; display: grid; gap: 7px; align-content: start;
+  transform: rotate(-5deg); box-shadow: 0 10px 24px rgba(0,0,0,.5); overflow: hidden; }
+.db__photo span { height: 4px; border-radius: 2px; background: #3a3f46; opacity: .55; }
+.db__photo span:nth-child(odd) { width: 70%; } .db__photo span:nth-child(3n) { width: 45%; }
+.db__photo small { position: absolute; left: 8px; bottom: 4px; font-size: 8px; color: #6b7178; }
+.db__scan { position: absolute; left: 0; right: 0; top: 0; height: 18px; background: linear-gradient(transparent, rgba(198,255,61,.55), transparent); opacity: 0; }
+.db.is-scanning .db__scan { opacity: 1; animation: dbScan 1.1s ease-in-out 2; }
+@keyframes dbScan { from { transform: translateY(-18px); } to { transform: translateY(104px); } }
+.db__arrow { color: var(--muted); text-align: center; transition: color .3s; }
+.db.is-scanning .db__arrow, .db.is-placing .db__arrow { color: var(--acid); animation: blink .6s steps(1) infinite; }
+.db__cal { min-width: 0; }
+.db__days { display: grid; grid-template-columns: repeat(5, 1fr); font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+.db__days b { font-weight: 400; text-align: center; }
+.db__grid { position: relative; height: 112px; border: 1px solid var(--line); border-radius: 6px;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(20% - 1px), var(--line) calc(20% - 1px) 20%),
+              repeating-linear-gradient(0deg, transparent 0 13px, #14181c 13px 14px); }
+.db__ev { position: absolute; left: calc(var(--d) * 20% + 2px); width: calc(20% - 4px); top: calc(var(--s) * 14px + 1px); height: calc(var(--l) * 14px - 2px);
+  border-radius: 4px; background: color-mix(in srgb, var(--c) 22%, transparent); border-left: 2px solid var(--c); color: var(--fg);
+  font-size: 9px; line-height: 1.2; padding: 2px 4px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  opacity: 0; transform: translateX(-24px) scale(.7); transition: opacity .35s, transform .45s cubic-bezier(.2,1.5,.4,1), background .3s, border-color .3s; }
+.db__ev.is-in { opacity: 1; transform: none; }
+.db__ev--a { width: calc(12% - 3px); }
+.db__ev--b { left: calc(3 * 20% + 9%); width: calc(11% - 2px); }
+.db.is-clash .db__ev--a, .db.is-clash .db__ev--b { --c: var(--ember); background: rgba(255,91,46,.28); box-shadow: 0 0 0 1px var(--ember), 0 0 14px rgba(255,91,46,.45); animation: dbShake .4s; }
+.db__status { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.db__status i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+.db.is-scanning .db__status i, .db.is-placing .db__status i { background: var(--acid); animation: blink .6s steps(1) infinite; }
+.db.is-clash .db__status { color: var(--fg); }
+.db.is-clash .db__status i { background: var(--ember); }
+.db.is-done .db__status { color: var(--acid); }
+.db.is-done .db__status i { background: var(--acid); }
+@keyframes dbShake { 20%,80% { transform: translateX(2px); } 40%,60% { transform: translateX(-3px); } }
 
 .habit-grid { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; }
 .habit-grid span { aspect-ratio: 1; border-radius: 3px; background: var(--line); transition: background .3s, transform .3s; }
