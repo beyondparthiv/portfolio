@@ -409,7 +409,7 @@
   /* ================= TOAST / COPY ================= */
   const toast = $("#toast"); let tt;
   const say = (m) => { toast.textContent = m; toast.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove("show"), 2200); };
-  const EMAIL = "modi.part@northeastern.edu";
+  const EMAIL = "parthivmodi23@gmail.com";
   const copyEmail = () => navigator.clipboard?.writeText(EMAIL).then(() => say("✓ email copied to clipboard"), () => say(EMAIL));
   $("#copyEmail").addEventListener("click", copyEmail);
 
