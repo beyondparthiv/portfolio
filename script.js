@@ -433,7 +433,13 @@
   }
   const konami = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
   let kpos = 0;
-  addEventListener("keydown", (e) => { kpos = e.key === konami[kpos] ? kpos + 1 : e.key === konami[0] ? 1 : 0; if (kpos === konami.length) { kpos = 0; toggleMatrix(); } });
+  addEventListener("keydown", (e) => {
+    // Shift / Caps Lock / held-key repeats must not break the sequence, and "B A" counts as "b a"
+    if (e.repeat || ["Shift", "CapsLock", "Control", "Alt", "Meta"].includes(e.key)) return;
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    kpos = key === konami[kpos] ? kpos + 1 : key === konami[0] ? 1 : 0;
+    if (kpos === konami.length) { kpos = 0; toggleMatrix(); }
+  });
 
   /* ================= COMMAND PALETTE ================= */
   const cmdk = $("#cmdk"), cin = $("#cmdkInput"), clist = $("#cmdkList");
