@@ -527,10 +527,11 @@
   cmdk.addEventListener("click", (e) => { if (e.target === cmdk) closeCmdk(); });
 
   /* ================= TERMINAL ================= */
-  const tin = $("#termInput"), tout = $("#termOut");
+  const term = $("#term"), tin = $("#termInput"), tout = $("#termOut");
   const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const chip = (c) => `<button type="button" class="term__chip" data-run="${c}">${c}</button>`;
   const T = {
-    help: () => "commands: <b>whoami</b> <b>ls</b> <b>skills</b> <b>contact</b> <b>github</b> <b>matrix</b> <b>clear</b> <b>sudo hire-me</b>",
+    help: () => "commands: " + ["whoami", "ls", "skills", "contact", "github", "matrix", "clear", "sudo hire-me"].map(chip).join(""),
     whoami: () => "parthiv modi: grad CS @ northeastern, full-stack engineer, intern @ ipserlab.",
     ls: () => "stockxchange/  daybook/  habitflow/  bookmycourt/  calendar-app/  analytics-dashboard/ (planned)",
     skills: () => "ts · js · python · java · c/c++ · sql · php · react · next.js · tailwind · fastapi · express · postgres · mysql · mongodb · firebase · pandas · android · llm apis",
@@ -540,19 +541,45 @@
     clear: () => { tout.innerHTML = ""; return null; },
     "sudo hire-me": () => { setTimeout(() => go("contact")(), 400); return "[sudo] password for recruiter: ******<br/><b>access granted.</b> great choice. → " + EMAIL; },
   };
-  tin.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
-    const q = tin.value.trim().toLowerCase(); tin.value = "";
+  const history = []; let hpos = 0;
+  function runCmd(raw) {
+    const q = raw.trim().toLowerCase();
     if (!q) return;
+    history.push(q); hpos = history.length;
     const p = document.createElement("p"); p.className = "cmd"; p.textContent = "~ $ " + q; tout.appendChild(p);
     let ans;
     if (T[q]) ans = T[q]();
     else if (q.startsWith("cat ")) ans = `${esc(q.slice(4))}: see the work section above ↑`;
     else if (q === "rm -rf /" || q.startsWith("sudo rm")) ans = "nice try. 🙂";
-    else ans = `command not found: ${esc(q)}. try <b>help</b>`;
+    else ans = `command not found: ${esc(q)}. try ${chip("help")}`;
     if (ans !== null) { const r = document.createElement("p"); r.innerHTML = ans; tout.appendChild(r); }
     tout.scrollTop = tout.scrollHeight;
+  }
+  // tapping a command types it out, then runs it, so it still feels like a terminal
+  let typing = false;
+  function typeAndRun(cmd) {
+    if (typing) return;
+    typing = true; tin.focus(); tin.value = "";
+    let i = 0;
+    const step = () => {
+      tin.value = cmd.slice(0, ++i);
+      if (i < cmd.length && !reduced) setTimeout(step, 38);
+      else { setTimeout(() => { runCmd(tin.value); tin.value = ""; typing = false; }, reduced ? 0 : 160); }
+    };
+    reduced ? (tin.value = cmd, runCmd(cmd), tin.value = "", typing = false) : step();
+  }
+  tin.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") { runCmd(tin.value); tin.value = ""; }
+    else if (e.key === "ArrowUp" && history.length) { e.preventDefault(); hpos = Math.max(0, hpos - 1); tin.value = history[hpos]; }
+    else if (e.key === "ArrowDown" && history.length) { e.preventDefault(); hpos = Math.min(history.length, hpos + 1); tin.value = history[hpos] || ""; }
   });
+  term.addEventListener("click", (e) => {
+    const c = e.target.closest(".term__chip");
+    if (c) return typeAndRun(c.dataset.run);
+    if (!getSelection().toString()) tin.focus({ preventScroll: true });
+  });
+  tin.addEventListener("focus", () => term.classList.add("is-focus"));
+  tin.addEventListener("blur", () => term.classList.remove("is-focus"));
 
   console.log("%c hey, fellow dev 👋 ", "background:#c6ff3d;color:#07080a;font:700 14px monospace;padding:6px");
   console.log("Press Ctrl+K anywhere, or try the konami code. Source is unminified, have a look.");
