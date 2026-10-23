@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=13" />
   <link rel="stylesheet" href="stockx.css?v=8" />
 </head>
 <body class="is-loading">
@@ -330,23 +330,64 @@
     <section class="stack section" id="stack">
       <div class="section__label"><span>04</span> / toolbox</div>
       <h2 class="section__title">The <em>stack</em>.</h2>
-      <div class="stack__grid">
-        <div class="stack__col">
-          <h4>// languages</h4>
-          <ul><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>Java</li><li>C / C++</li><li>SQL</li><li>PHP</li></ul>
-        </div>
-        <div class="stack__col">
-          <h4>// frontend</h4>
-          <ul><li>React</li><li>Next.js</li><li>Tailwind CSS</li><li>HTML &amp; CSS</li><li>Accessible UI</li></ul>
-        </div>
-        <div class="stack__col">
-          <h4>// backend &amp; data</h4>
-          <ul><li>FastAPI</li><li>Node / Express</li><li>REST APIs</li><li>PostgreSQL / Supabase</li><li>MySQL</li><li>MongoDB</li><li>Firebase</li><li>NumPy / Pandas</li></ul>
-        </div>
-        <div class="stack__col">
-          <h4>// practice</h4>
-          <ul><li>LLM APIs</li><li>Android</li><li>OAuth</li><li>Design patterns</li><li>DS &amp; algorithms</li><li>Unit testing (JUnit)</li><li>Git workflows</li><li>Vercel</li></ul>
-        </div>
+      <p class="tb__lede"><b>28 tools</b> · 4 domains · <span>hover or tap any skill to see where I used it</span></p>
+      <div class="tb">
+        <article class="tb__card" style="--i:0">
+          <header><span class="tb__glyph" aria-hidden="true">{ }</span><span class="tb__idx">01 / 07</span></header>
+          <h3>Languages</h3>
+          <ul class="tb__chips">
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange, Daybook, HabitFlow" style="--k:0">TypeScript</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="IpserLab redesign, BookMyCourt, this portfolio" style="--k:1">JavaScript</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange price engine, Foundations of AI" style="--k:2">Python</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Calendar App, Android apps (CS 5520)" style="--k:3">Java</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Systems and algorithms coursework" style="--k:4">C / C++</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange, HabitFlow, Database Management (CS 5200)" style="--k:5">SQL</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Book-My-Turf booking platform" style="--k:6">PHP</li>
+          </ul>
+          <p class="tb__used" aria-live="polite"><span>↳</span><em>hover a skill</em></p>
+        </article>
+        <article class="tb__card" style="--i:1">
+          <header><span class="tb__glyph" aria-hidden="true">&lt;/&gt;</span><span class="tb__idx">02 / 05</span></header>
+          <h3>Frontend</h3>
+          <ul class="tb__chips">
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="IpserLab redesign, BookMyCourt, Daybook" style="--k:0">React</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange, Daybook, HabitFlow, BookMyCourt" style="--k:1">Next.js</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange, Daybook, HabitFlow" style="--k:2">Tailwind CSS</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="this portfolio, IpserLab redesign" style="--k:3">HTML &amp; CSS</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="IpserLab redesign, this portfolio" style="--k:4">Accessible UI</li>
+          </ul>
+          <p class="tb__used" aria-live="polite"><span>↳</span><em>hover a skill</em></p>
+        </article>
+        <article class="tb__card" style="--i:2">
+          <header><span class="tb__glyph" aria-hidden="true">⇄</span><span class="tb__idx">03 / 08</span></header>
+          <h3>Backend &amp; data</h3>
+          <ul class="tb__chips">
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange price &amp; news engine" style="--k:0">FastAPI</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="BookMyCourt API server" style="--k:1">Node / Express</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange engine, BookMyCourt" style="--k:2">REST APIs</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange, HabitFlow (row-level security)" style="--k:3">PostgreSQL / Supabase</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Book-My-Turf" style="--k:4">MySQL</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="BookMyCourt (Mongoose)" style="--k:5">MongoDB</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Android realtime apps (CS 5520)" style="--k:6">Firebase</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="StockXchange price settlement &amp; P&amp;L" style="--k:7">NumPy / Pandas</li>
+          </ul>
+          <p class="tb__used" aria-live="polite"><span>↳</span><em>hover a skill</em></p>
+        </article>
+        <article class="tb__card" style="--i:3">
+          <header><span class="tb__glyph" aria-hidden="true">⚙</span><span class="tb__idx">04 / 08</span></header>
+          <h3>Practice</h3>
+          <ul class="tb__chips">
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Daybook photo → calendar extraction" style="--k:0">LLM APIs</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="CS 5520 Mobile App Development" style="--k:1">Android</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="HabitFlow Google sign-in" style="--k:2">OAuth</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Calendar App (Adapter, Factory, Command)" style="--k:3">Design patterns</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Algorithms (CS 5800)" style="--k:4">DS &amp; algorithms</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Program Design Paradigm (CS 5010)" style="--k:5">Unit testing (JUnit)</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="IpserLab feature branches, every project here" style="--k:6">Git workflows</li>
+            <li class="tb__chip" tabindex="0" data-cursor="" data-used="Daybook, HabitFlow deploys" style="--k:7">Vercel</li>
+          </ul>
+          <p class="tb__used" aria-live="polite"><span>↳</span><em>hover a skill</em></p>
+        </article>
       </div>
     </section>
 
@@ -387,7 +428,7 @@
   <canvas id="matrix" aria-hidden="true"></canvas>
   <div class="toast" id="toast"></div>
 
-  <script src="script.js?v=12"></script>
+  <script src="script.js?v=13"></script>
   <script src="stockx.js?v=9"></script>
 </body>
 </html>

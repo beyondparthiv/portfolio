@@ -329,7 +329,7 @@
       } else el.classList.add("in");
     });
   }, { threshold: 0.15 });
-  $$("[data-count], .project, .tl").forEach((el) => io.observe(el));
+  $$("[data-count], .project, .tl, .tb__card").forEach((el) => io.observe(el));
 
   /* ================= PROJECT TILT + GLOW ================= */
   if (finePointer && !reduced) {
@@ -344,6 +344,37 @@
       card.addEventListener("pointerleave", () => (card.style.transform = ""));
     });
   }
+
+  /* ================= TOOLBOX: hover a skill to see where it was used ================= */
+  $$(".tb__card").forEach((card) => {
+    const used = $(".tb__used em", card), fallback = finePointer ? "hover a skill" : "tap a skill";
+    used.textContent = fallback;
+    let cur = null;
+    const on = (chip) => {
+      if (cur === chip) return;
+      if (cur) cur.classList.remove("is-on");
+      cur = chip; chip.classList.add("is-on"); card.classList.add("is-peek");
+      reduced ? (used.textContent = chip.dataset.used) : scramble(used, chip.dataset.used, 420);
+    };
+    const off = () => {
+      if (cur) cur.classList.remove("is-on");
+      cur = null; card.classList.remove("is-peek");
+      cancelAnimationFrame(used._raf); used.textContent = fallback;
+    };
+    $$(".tb__chip", card).forEach((chip) => {
+      chip.addEventListener("pointerenter", () => on(chip));
+      chip.addEventListener("focus", () => on(chip));
+      chip.addEventListener("keydown", (e) => { if (e.key === "Escape") chip.blur(); });
+    });
+    card.addEventListener("pointerleave", (e) => { if (e.pointerType !== "touch") off(); });
+    card.addEventListener("focusout", (e) => { if (!card.contains(e.relatedTarget)) off(); });
+    document.addEventListener("pointerdown", (e) => { if (cur && !card.contains(e.target)) off(); });
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", e.clientX - r.left + "px");
+      card.style.setProperty("--my", e.clientY - r.top + "px");
+    });
+  });
 
   /* ================= DAYBOOK DEMO: photo -> events -> clash caught ================= */
   const db = $("#dbDemo"), dbStatus = $("#dbStatus"), dbEvents = $$(".db__ev", db);
