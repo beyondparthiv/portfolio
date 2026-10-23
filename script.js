@@ -345,6 +345,53 @@
     });
   }
 
+  /* ================= LATEST ON GITHUB: repos tagged "portfolio", newest first ================= */
+  (() => {
+    const wrap = $("#gh"), list = $("#ghList");
+    if (!wrap) return;
+    const USER = "beyondparthiv", TOPIC = "portfolio";
+    const LANG = { TypeScript: "#3178c6", JavaScript: "#f1e05a", Python: "#3572A5", Java: "#b07219", PHP: "#4F5D95", HTML: "#e34c26", CSS: "#563d7c", Kotlin: "#A97BFF", "C++": "#f34b7d", C: "#555555" };
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const ago = (iso) => {
+      const s = (Date.now() - new Date(iso)) / 1000;
+      for (const [u, n] of [["year", 31536e3], ["month", 2592e3], ["week", 604800], ["day", 86400], ["hour", 3600], ["minute", 60]])
+        if (s >= n) { const v = Math.floor(s / n); return `${v} ${u}${v > 1 ? "s" : ""} ago`; }
+      return "just now";
+    };
+    // on Vercel this hits our cached function; when previewing locally there's no /api, so ask GitHub directly
+    async function load() {
+      try {
+        const r = await fetch("/api/github");
+        if (r.ok && (r.headers.get("content-type") || "").includes("json")) return (await r.json()).items || [];
+      } catch (e) {}
+      const r = await fetch(`https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed`);
+      if (!r.ok) return [];
+      return (await r.json())
+        .filter((x) => !x.fork && !x.archived && (x.topics || []).includes(TOPIC))
+        .slice(0, 6)
+        .map((x) => ({ name: x.name, description: x.description, url: x.html_url, language: x.language, stars: x.stargazers_count, pushedAt: x.pushed_at, topics: (x.topics || []).filter((t) => t !== TOPIC).slice(0, 4) }));
+    }
+    let started = false;
+    new IntersectionObserver(async ([e], obs) => {
+      if (!e.isIntersecting || started) return;
+      started = true; obs.disconnect();
+      wrap.hidden = false;
+      list.innerHTML = '<div class="gh__skel"></div>'.repeat(3);
+      let items = [];
+      try { items = await load(); } catch (err) {}
+      if (!items.length) { wrap.hidden = true; return; } // nothing tagged yet: stay invisible
+      list.innerHTML = items.map((x, i) => `
+        <a class="gh__card" href="${esc(x.url)}" target="_blank" rel="noopener" data-cursor="git clone" style="transition-delay:${i * 70}ms">
+          <div class="gh__top"><span>${esc(USER)} /</span><span>updated ${ago(x.pushedAt)}</span></div>
+          <div class="gh__name">${esc(x.name)}</div>
+          <p class="gh__desc${x.description ? "" : " is-empty"}">${x.description ? esc(x.description) : "work in progress"}</p>
+          ${x.topics && x.topics.length ? `<div class="gh__tags">${x.topics.map((t) => `<i>${esc(t)}</i>`).join("")}</div>` : ""}
+          <div class="gh__meta">${x.language ? `<span class="gh__lang" style="--c:${LANG[x.language] || "var(--muted)"}"><b></b>${esc(x.language)}</span>` : ""}<span>★ ${x.stars || 0}</span></div>
+        </a>`).join("");
+      requestAnimationFrame(() => $$(".gh__card", list).forEach((c) => c.classList.add("in")));
+    }, { rootMargin: "300px" }).observe($(".projects"));
+  })();
+
   /* ================= TOOLBOX: hover a skill to see where it was used ================= */
   $$(".tb__card").forEach((card) => {
     const used = $(".tb__used em", card), fallback = finePointer ? "hover a skill" : "tap a skill";

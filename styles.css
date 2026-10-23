@@ -469,3 +469,33 @@ body.matrix #matrix { opacity: .55; }
   .btn { padding: 14px 20px; font-size: 13px; }
   #copyEmail small { display: none; }
 }
+
+/* ---------- LATEST ON GITHUB (auto-updating) ---------- */
+.gh { margin-top: 72px; }
+.gh[hidden] { display: none; }
+.gh__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+.gh__live { display: inline-flex; align-items: center; gap: 8px; color: var(--acid); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; }
+.gh__live i { width: 7px; height: 7px; border-radius: 50%; background: var(--acid); animation: pulse 2s infinite; }
+.gh__head h3 { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 3.6vw, 44px); letter-spacing: -.04em; line-height: 1.05; margin-top: 8px; }
+.gh__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 1000px) { .gh__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .gh__list { grid-template-columns: minmax(0, 1fr); } }
+.gh__card {
+  position: relative; display: flex; flex-direction: column; gap: 10px; min-height: 168px;
+  padding: 18px 18px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2);
+  opacity: 0; translate: 0 24px; transition: opacity .7s var(--ease), translate .7s var(--ease), border-color .25s, background .25s;
+}
+.gh__card.in { opacity: 1; translate: 0 0; }
+.gh__card:hover { border-color: #3a4048; background: #12151a; }
+.gh__card:hover .gh__name { color: var(--acid); }
+.gh__top { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 11px; }
+.gh__name { font-family: var(--display); font-weight: 500; font-size: 18px; letter-spacing: -.02em; color: var(--fg); overflow-wrap: anywhere; transition: color .25s; }
+.gh__desc { color: #c3c0b8; font-size: 13px; line-height: 1.5; }
+.gh__desc.is-empty { color: var(--muted); font-style: italic; }
+.gh__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.gh__tags i { font-style: normal; font-size: 10px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.gh__meta { margin-top: auto; display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: 11px; }
+.gh__lang { display: inline-flex; align-items: center; gap: 6px; }
+.gh__lang b { width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--muted)); }
+.gh__skel { min-height: 168px; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(90deg, var(--bg-2) 0%, #14181c 50%, var(--bg-2) 100%); background-size: 200% 100%; animation: ghSkel 1.3s linear infinite; }
+@keyframes ghSkel { from { background-position: 200% 0; } to { background-position: -200% 0; } }
